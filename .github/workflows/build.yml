@@ -27,4 +27,14 @@ jobs:
       - name: Publicar versão
         shell: bash
         env:
-          GH_TOKEN: ${{
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSAO="v$(tr -d ' \r\n' < src/versao.txt)"
+          if gh release view "$VERSAO" > /dev/null 2>&1; then
+            # mesma versão: só troca o .exe dentro dela
+            gh release upload "$VERSAO" LimpaRAM.exe --clobber
+          else
+            gh release create "$VERSAO" LimpaRAM.exe \
+              --title "LimpaRAM $VERSAO" \
+              --notes "Versão compilada automaticamente a partir do código em src/."
+          fi
