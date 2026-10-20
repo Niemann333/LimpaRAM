@@ -22,7 +22,7 @@ jobs:
       - name: Compilar LimpaRAM.exe
         shell: cmd
         run: |
-          "%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /nologo /target:winexe /optimize+ /platform:anycpu /win32manifest:src\app.manifest /out:LimpaRAM.exe /r:System.Windows.Forms.dll /r:System.Drawing.dll src\LimpaRAM.cs
+          "%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /nologo /target:winexe /optimize+ /platform:anycpu /win32manifest:src\app.manifest /win32icon:src\icone.ico /out:LimpaRAM.exe /r:System.Windows.Forms.dll /r:System.Drawing.dll src\LimpaRAM.cs
 
       - name: Publicar nova versão
         shell: bash
