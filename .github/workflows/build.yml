@@ -24,12 +24,7 @@ jobs:
         run: |
           "%WINDIR%\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /nologo /target:winexe /optimize+ /platform:anycpu /win32manifest:src\app.manifest /win32icon:src\icone.ico /out:LimpaRAM.exe /r:System.Windows.Forms.dll /r:System.Drawing.dll src\LimpaRAM.cs
 
-      - name: Publicar nova versão
+      - name: Publicar versão
         shell: bash
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          TAG="v1.${{ github.run_number }}"
-          gh release create "$TAG" LimpaRAM.exe \
-            --title "LimpaRAM $TAG" \
-            --notes "Versão compilada automaticamente a partir do código em src/."
+          GH_TOKEN: ${{
